@@ -26,8 +26,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   void getFullMoney() async {
     print('object');
-    Changes.fullBalance =
-        (await SharedPrefs().getIntFromSharedPreferences('full_balance'))!;
+    if (await SharedPrefs().getIntFromSharedPreferences('full_balance') !=
+        null) {
+      Changes.fullBalance =
+          (await SharedPrefs().getIntFromSharedPreferences('full_balance'))!;
+    }
   }
 
   @override
@@ -53,7 +56,9 @@ class MainScreen extends StatelessWidget {
   bool canOpen = true;
   Future<void> openVoid() async {
     print('x');
-    canOpen = (await SharedPrefs().getBoolFromSharedPreferences('open'))!;
+    if (await SharedPrefs().getBoolFromSharedPreferences('open') != null) {
+      canOpen = (await SharedPrefs().getBoolFromSharedPreferences('open'))!;
+    }
     print('xx' + canOpen.toString());
   }
 
